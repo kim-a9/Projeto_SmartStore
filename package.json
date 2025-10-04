@@ -1,0 +1,41 @@
+{
+  "name": "projeto_smartstore",
+  "version": "1.0.0",
+  "description": "Projeto final da trilha de formação Aprofunda PretaLab",
+  "main": "server.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "test": "jest --config jest.config.js --detectOpenHandles --forceExit",
+    "start": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kim-a9/Projeto_SmartStore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kim-a9/Projeto_SmartStore/issues"
+  },
+  "homepage": "https://github.com/kim-a9/Projeto_SmartStore#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.6.2",
+    "@types/supertest": "^6.0.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ts-jest": "^29.4.4"
+  }
+}
