@@ -35,7 +35,9 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@types/mongoose": "^5.11.96",
     "dotenv": "^17.2.3",
+    "mongoose": "^8.19.0",
     "ts-jest": "^29.4.4"
   }
 }
