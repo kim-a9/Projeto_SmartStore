@@ -15,7 +15,7 @@ async function startServer() {
     await mongoConnection();
     console.log("✅ Conexão ao banco de dados estabelecida com sucesso!");
     app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(`Servidor rodando em ${PORT}`);
     });
   } catch (error) {
     console.error("Falha ao iniciar servidor", error);
