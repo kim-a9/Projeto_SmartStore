@@ -1,0 +1,21 @@
+import {Request, Response} from 'express';
+import { ProductServices } from '../services/product-services';
+
+export class ProductController {
+    private productServices: ProductServices;
+
+    constructor(productServices: ProductServices) {
+        this.productServices = productServices;
+    }
+
+    public async CreateProductController(req: Request, res: Response): Promise<void> {
+        const product = await this.productServices.createProduct(req.body);
+
+        if(!product) {
+            throw new Error('Verifique os dados inseridos e tente novamente');
+        }
+        res.status(200).json({ message: 'Produto criado com sucesso!'});
+    }
+    
+
+}
