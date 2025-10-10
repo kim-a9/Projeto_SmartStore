@@ -23,7 +23,7 @@ A aplicação está hospedada na plataforma Render, permitindo acesso público e
 Antes de iniciar o projeto, garanta que você tenha:
 - Node.js (versão 16 ou superior)
 - npm (instalado com o Node.js)
-- Postman para testar os endpoints
+- Postman/ThundeClient para testar os endpoints
 - MongoDB local ou instância na nuvem (ex: MongoDB Atlas)
 
 ## 📫 Endpoints Principais
@@ -33,10 +33,11 @@ Antes de iniciar o projeto, garanta que você tenha:
     | POST | /cadastro | Registra um novo produto
     | Outros métodos a serem desenvolvidos |
 ```
+
 ## 📁 Estrutura de Pastas (Clean Architecture)
 ```markdown
 src/
-─│ │               
+│ │               
 │ ├── controllers/ 
 │ │     └── product-controllers
 │ ├── database/
@@ -90,4 +91,25 @@ npm start
 ```
 
 # 🧪 Testando a API
-1. Adicionar um novo produto (POST)
+1. Mensagem inicial (GET http://localhost:3000/ )
+EXEMPLO DE RESPOSTA (ThunderClient):
+![Mensagem Tela Inicial](docs/testes/1-tela-inicial.png)
+
+2. Adicionar um novo produto (POST http://localhost:3000/cadastro )
+EXEMPLO DO BODY ENVIADO (ThunderClient):
+```console
+{
+  "productCode": "1234" ,
+  "name": "Produto modelo",
+  "quantity": 50,
+  "category": "categoria",
+  "price": 5.00
+}
+```
+EXEMPLO DE RESPOSTA (ThunderClient):
+![ROTA /cadastro](docs/testes/2-cadastro-produto.png)
+
+
+
+# 🆕 Futuras Atualizações:
+O projeto ainda contará com rotas para consulta dos registros, e opção para editar informações e deletar.
