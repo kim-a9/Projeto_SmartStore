@@ -1,12 +1,13 @@
 import request from 'supertest';
 import mongoose from 'mongoose';
 import { ProductModel } from '../../src/database/MongooseProductModel';
-import app from '../../src/server';
+import app from '../../src/index';
+// import app from '../../src/server';
 describe('Product integration test ' , () => {
 
     beforeAll(async () => {
-        await mongoose.createConnection(process.env.MONGODB_TEST!);
-    });
+        await mongoose.connect(process.env.MONGODB_TEST!); 
+    }, 30000);
 
     beforeEach(async () => {
         await ProductModel.deleteMany({});
