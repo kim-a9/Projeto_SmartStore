@@ -6,8 +6,7 @@ import app from '../../src/index';
 describe('Product integration test ' , () => {
 
     beforeAll(async () => {
-        await mongoose.createConnection(process.env.MONGODB_TEST!);
-        
+        await mongoose.connect(process.env.MONGODB_TEST!);      
     });
 
     beforeEach(async () => {
