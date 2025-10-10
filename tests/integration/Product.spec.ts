@@ -6,8 +6,9 @@ import app from '../../src/index';
 describe('Product integration test ' , () => {
 
     beforeAll(async () => {
+        console.log(process.env.MONGODB_TEST)
         await mongoose.connect(process.env.MONGODB_TEST!);
-    });
+    }, 30000);
 
     beforeEach(async () => {
         await ProductModel.deleteMany({});
