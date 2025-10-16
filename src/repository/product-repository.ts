@@ -5,5 +5,10 @@ export class ProductRepository {
         const newProduct = new ProductModel(data);
         return await newProduct.save();
     };
+
+    public async getAll(): Promise<IProduct[]> {
+        const allProducts = await ProductModel.find();
+        return allProducts;
+    }
     
 }

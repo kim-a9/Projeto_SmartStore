@@ -13,5 +13,10 @@ export class ProductServices{
         return await this.productRepository.create(data);
     }
 
+    public async getProducts(): Promise<IProduct[] | null> {
+        return await this.productRepository.getAll();
+    }
+    
+
 
 }

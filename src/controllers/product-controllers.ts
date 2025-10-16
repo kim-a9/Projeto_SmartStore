@@ -16,6 +16,15 @@ export class ProductController {
         }
         res.status(200).json({ message: 'Produto criado com sucesso!'});
     }
+
+    public async GetProductController(req: Request, res: Response): Promise<void> {
+        const allProducts = await this.productServices.getProducts();
+
+        if(!allProducts) {
+            throw new Error('Não foi possível localizar os produtos.');
+        }
+        res.status(200).json(allProducts);
+    }
     
 
 }
