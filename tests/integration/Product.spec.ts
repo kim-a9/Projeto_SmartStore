@@ -2,7 +2,6 @@ import request from 'supertest';
 import mongoose from 'mongoose';
 import { ProductModel } from '../../src/database/MongooseProductModel';
 import app from '../../src/index';
-// import app from '../../src/server';
 describe('Product integration test ' , () => {
 
     beforeAll(async () => {

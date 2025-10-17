@@ -13,6 +13,6 @@
     "declarationMap": true,
     "sourceMap": true
   },
-  "include": ["src", "tests"],
+  "include": ["src", "tests", "tests"],
   "exclude": ["node_modules", "dist", "tests/**/*"]
 }
