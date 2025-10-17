@@ -4,8 +4,6 @@ import app from './index';
 const PORT = process.env.PORT || 3000;
 
 
-
-
 async function startServer() {
   try {
     await mongoConnection();
