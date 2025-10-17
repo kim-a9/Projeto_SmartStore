@@ -32,31 +32,31 @@ describe('Product integration test ' , () => {
 
     });
 
-    // it('deve criar novo produto e retornar 200', async () => {
-    //     const res = await request(app).post('/cadastro').send({
-    //         productCode: "0002" ,
-    //         name: "produto 2",
-    //         quantity: 50,
-    //         category: "categoria",
-    //         price: 5.00
-    //     });
+    it('deve criar novo produto e retornar 200', async () => {
+        const res = await request(app).post('/cadastro').send({
+            productCode: "0002" ,
+            name: "produto 2",
+            quantity: 50,
+            category: "categoria",
+            price: 5.00
+        });
 
-    //     expect(res.body.message).toEqual('Produto criado com sucesso!');
-    //     expect(res.statusCode).toBe(200);
-    // });
+        expect(res.body.message).toEqual('Produto criado com sucesso!');
+        expect(res.statusCode).toBe(200);
+    });
 
-    // it('deve retornar erro ao adicionar produto com campos inválidos', async () =>{
-    //        const res = await request(app).post('/cadastro').send({
-    //         productCode: "" ,
-    //         name: "",
-    //         quantity: 50,
-    //         category: "categoria",
-    //         price: 5.00
-    //     });
+    it('deve retornar erro ao adicionar produto com campos inválidos', async () =>{
+           const res = await request(app).post('/cadastro').send({
+            productCode: "" ,
+            name: "",
+            quantity: 50,
+            category: "categoria",
+            price: 5.00
+        });
         
 
-    //     expect(res.statusCode).toBe(500);
-    // })
+        expect(res.statusCode).toBe(500);
+    })
 
     it('deve buscar por todos os produtos e retornar 200', async () => {
         const res = await request(app).post('/cadastro').send({
