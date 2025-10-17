@@ -1,4 +1,3 @@
-import express from 'express';
 import { mongoConnection } from './database/MongooseConnection';
 import app from './index';
 

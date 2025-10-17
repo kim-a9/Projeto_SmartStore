@@ -4,13 +4,13 @@
   "description": "Projeto final da trilha de formação Aprofunda PretaLab",
   "main": "server.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "coverage": "jest --coverage",
     "start": "node dist/server.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "test": "jest --config jest.config.js --detectOpenHandles --forceExit",
     "test:unit": "jest ./tests/unit --config jest.config.js --runInBand --detectOpenHandles --forceExit",
-    "test:integration": "jest ./tests/integration --config jest.config.js --runInBand --detectOpenHandles --forceExit"
+    "test:integration": "jest ./tests/integration --config jest.config.js --runInBand --detectOpenHandles --forceExit",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.6.2",
+    "@types/node": "^24.8.0",
     "@types/supertest": "^6.0.3",
     "cors": "^2.8.5",
     "express": "^5.1.0",
@@ -41,6 +41,7 @@
   "dependencies": {
     "@types/mongoose": "^5.11.96",
     "dotenv": "^17.2.3",
+    "newrelic": "^13.5.0",
     "ts-jest": "^29.4.4"
   }
 }
