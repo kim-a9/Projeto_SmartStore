@@ -19,6 +19,9 @@ router.post('/cadastro', (req, res) =>
 router.get('/consulta', (req, res) => 
     productController.GetProductController(req, res));
 
+router.get('/consulta/:id', (req, res) => 
+    productController.GetProductIdController(req, res));
+
 
 
 

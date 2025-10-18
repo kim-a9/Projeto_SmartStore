@@ -16,6 +16,10 @@ export class ProductServices{
     public async getProducts(): Promise<IProduct[] | null> {
         return await this.productRepository.getAll();
     }
+
+    public async getProdById(id: string): Promise<IProduct | null> {
+        return await this.productRepository.getById(id);
+    }
     
 
 

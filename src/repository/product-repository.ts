@@ -10,5 +10,9 @@ export class ProductRepository {
         const allProducts = await ProductModel.find();
         return allProducts;
     }
+    public async getById(id: string): Promise<IProduct | null> {
+        const prodId = await ProductModel.findOne({ productCode: id });
+        return prodId;
+    }
     
 }
