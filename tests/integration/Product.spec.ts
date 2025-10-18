@@ -73,6 +73,21 @@ describe('Product integration test ' , () => {
 
     });
 
+    it('deve buscar pelo produto por id e retornar 200', async () => {
+        const res = await request(app).post('/cadastro').send({
+            productCode: "9999",
+            name: "produto",
+            quantity: 50,
+            category: "categoria",
+            price: 5.0,
+        });
+
+        const r = await request(app).get('/consulta/:id');
+
+        expect(r.statusCode).toBe(200);
+
+    });
+
 
 
 
