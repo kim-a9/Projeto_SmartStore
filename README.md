@@ -23,7 +23,7 @@ A aplicação está hospedada na plataforma Render, permitindo acesso público e
 Antes de iniciar o projeto, garanta que você tenha:
 - Node.js (versão 16 ou superior)
 - npm (instalado com o Node.js)
-- Postman/ThundeClient para testar os endpoints
+- Postman/ThunderClient para testar os endpoints
 - MongoDB local ou instância na nuvem (ex: MongoDB Atlas)
 
 ## 📫 Endpoints Principais
@@ -31,6 +31,8 @@ Antes de iniciar o projeto, garanta que você tenha:
     | Método | Endpoint | Descrição | 
     | GET | / | Tela inicial
     | POST | /cadastro | Registra um novo produto
+    | GET | /consulta | Consulta todos os produtos registrados
+    | GET | /consulta/:id | Consulta um único produto registrado
     | Outros métodos a serem desenvolvidos |
 ```
 
@@ -109,7 +111,18 @@ EXEMPLO DO BODY ENVIADO (ThunderClient):
 EXEMPLO DE RESPOSTA (ThunderClient):
 ![ROTA /cadastro](docs/testes/2-cadastro-produto.png)
 
+3. Pesquisar por todos os produtos (GET http://localhost:3000/consulta )
+![ROTA /consulta](docs/testes/3-consulta-produtos.png)
+
+4. Pesquisar por UM produto pelo código (GET http://localhost:3000/consulta/:id )
+EXEMPLO DE USO (ThunderClient): 
+```console
+GET http://localhost:3000/consulta/5678
+```
+EXEMPLO DE RESPOSTA (ThunderClient):
+![ROTA /consulta/:id](docs/testes/3-consulta-produtos-id.png)
+
 
 
 # 🆕 Futuras Atualizações:
-O projeto ainda contará com rotas para consulta dos registros, e opção para editar informações e deletar.
+O projeto ainda contará com rotas para editar informações e deletar. Uma opção para buscar um produto pelo nome poderá ser incluída.
