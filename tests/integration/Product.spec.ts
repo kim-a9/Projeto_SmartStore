@@ -82,7 +82,7 @@ describe('Product integration test ' , () => {
             price: 5.0,
         });
 
-        const r = await request(app).get('/consulta/:id');
+        const r = await request(app).get('/consulta/');
 
         expect(r.statusCode).toBe(200);
 
