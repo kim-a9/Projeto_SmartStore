@@ -16,6 +16,25 @@ export class ProductController {
         }
         res.status(200).json({ message: 'Produto criado com sucesso!'});
     }
+
+    public async GetProductController(req: Request, res: Response): Promise<void> {
+        const allProducts = await this.productServices.getProducts();
+
+        if(!allProducts) {
+            throw new Error('Não foi possível localizar os produtos.');
+        }
+        res.status(200).json(allProducts);
+    }
+
+    public async GetProductIdController(req: Request, res: Response): Promise<void> {
+        const { id } = req.params;
+        const prodId = await this.productServices.getProdById(id);
+
+        if(!prodId){
+            throw new Error('Id inválido. Verifique as informações inseridas e tente novamente.');
+        }
+        res.status(200).json(prodId);
+    }
     
 
 }

@@ -2,7 +2,6 @@ import request from 'supertest';
 import mongoose from 'mongoose';
 import { ProductModel } from '../../src/database/MongooseProductModel';
 import app from '../../src/index';
-// import app from '../../src/server';
 describe('Product integration test ' , () => {
 
     beforeAll(async () => {
@@ -11,6 +10,13 @@ describe('Product integration test ' , () => {
 
     beforeEach(async () => {
         await ProductModel.deleteMany({});
+        await request(app).post('/cadastro').send({
+            productCode: "0001",
+            name: "Produto 1",
+            quantity: 50,
+            category: "categoria",
+            price: 5.0,
+        });
     });
 
     afterAll(async () => {
@@ -28,8 +34,8 @@ describe('Product integration test ' , () => {
 
     it('deve criar novo produto e retornar 200', async () => {
         const res = await request(app).post('/cadastro').send({
-            productCode: "0001" ,
-            name: "produto 1",
+            productCode: "0002" ,
+            name: "produto 2",
             quantity: 50,
             category: "categoria",
             price: 5.00
@@ -52,7 +58,35 @@ describe('Product integration test ' , () => {
         expect(res.statusCode).toBe(500);
     })
 
+    it('deve buscar por todos os produtos e retornar 200', async () => {
+        const res = await request(app).post('/cadastro').send({
+            productCode: "0003",
+            name: "Produto 3",
+            quantity: 50,
+            category: "categoria",
+            price: 5.0
+        });
 
+        const r = await request(app).get('/consulta');
+
+        expect(r.statusCode).toBe(200);
+
+    });
+
+    it('deve buscar pelo produto por id e retornar 200', async () => {
+        const res = await request(app).post('/cadastro').send({
+            productCode: "9999",
+            name: "produto",
+            quantity: 50,
+            category: "categoria",
+            price: 5.0,
+        });
+
+        const r = await request(app).get('/consulta/');
+
+        expect(r.statusCode).toBe(200);
+
+    });
 
 
 

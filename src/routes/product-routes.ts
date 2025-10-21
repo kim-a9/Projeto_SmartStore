@@ -10,12 +10,17 @@ const productController = new ProductController(productServices);
 const router = express.Router();
 
 router.get('/', (req, res) => 
-    res.json({ message: 'Olá, Mundo' })
+    res.json({ message: "Olá, Mundo" })
 );
 
 router.post('/cadastro', (req, res) => 
     productController.CreateProductController(req, res));
 
+router.get('/consulta', (req, res) => 
+    productController.GetProductController(req, res));
+
+router.get('/consulta/:id', (req, res) => 
+    productController.GetProductIdController(req, res));
 
 
 
