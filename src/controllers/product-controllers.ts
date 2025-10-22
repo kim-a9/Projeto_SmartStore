@@ -42,12 +42,12 @@ export class ProductController {
         const { name, quantity, category, price } = req.body;
         
 
-        const updateProd = await this.productServices.updateProduct(id);
+        const updateProd = await this.productServices.updateProduct(id,req.body);
 
         if(!updateProd){
             throw new Error('Não foi possível localizar o produto.')
         }
-        res.status(201).json({ message: 'Produto atualizado com sucesso ', updateProd})
+        res.status(201).json(updateProd)
     }
     
     

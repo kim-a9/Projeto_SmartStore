@@ -22,7 +22,7 @@ router.get('/consulta', (req, res) =>
 router.get('/consulta/:id', (req, res) => 
     productController.GetProductIdController(req, res));
 
-router.put('/editar', (req, res) => 
+router.put('/editar/:id', (req, res) => 
     productController.UpdateProductController(req, res));
 
 
