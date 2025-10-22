@@ -20,6 +20,10 @@ export class ProductServices{
     public async getProdById(id: string): Promise<IProduct | null> {
         return await this.productRepository.getById(id);
     }
+
+    public async updateProduct(id: string, data: IProduct): Promise<IProduct | null> {
+        return await this.productRepository.updateProd(id, data);
+    }
     
 
 
