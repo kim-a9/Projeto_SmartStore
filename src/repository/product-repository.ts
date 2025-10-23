@@ -35,6 +35,11 @@ export class ProductRepository {
         // const updateProd = await ProductModel.updateOne({ productCode: id }, { data: IProductInput})
     
     }
+
+    public async deleteProd(id: string): Promise<IProduct | null> {
+        const delProd = await ProductModel.findByIdAndDelete(id);
+        return delProd;
+    }
     
     
 }

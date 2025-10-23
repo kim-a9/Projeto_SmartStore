@@ -42,12 +42,24 @@ export class ProductController {
         const { name, quantity, category, price } = req.body;
         
 
-        const updateProd = await this.productServices.updateProduct(id,req.body);
+        const updateProd = await this.productServices.updateProduct(id, req.body);
 
         if(!updateProd){
             throw new Error('Não foi possível localizar o produto.')
         }
         res.status(201).json(updateProd)
+    }
+
+    public async DeleteProductController(req: Request, res: Response): Promise<void> {
+        const {id} = req.params;
+
+        const delProd = await this.productServices.deleteProduct(id);
+
+        if(!delProd){
+            throw new Error('Não foi possível localizar o produto.')
+        }
+        res.status(201).json(delProd)
+        
     }
     
     
