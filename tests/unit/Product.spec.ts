@@ -205,17 +205,20 @@ describe("Product unit test ", () => {
     const mockRepository = {
       create: jest.fn().mockResolvedValue(prod),
       getAll: jest.fn(),
-      getById: jest.fn().mockResolvedValue(prod),
+      getById: jest.fn().mockResolvedValueOnce(null),
       updateProd: jest.fn(),
-      deleteProd: jest.fn(),
+      deleteProd: jest.fn().mockResolvedValue(undefined)
     };
     const prodService = new ProductServices(mockRepository);
     const product = await prodService.createProduct(prod as any);
 
-    const delProd = await prodService.deleteProduct("9999");
+    const delProduct = await prodService.deleteProduct(prod.productCode);
 
-    expect(delProd).toBeNull();
-  })
+    const dltProd = await prodService.getProdById(prod.productCode);
+
+    expect(dltProd).toBeNull();
+    expect(mockRepository.deleteProd).toHaveBeenCalledTimes(1);
+  });
 
 
 
