@@ -116,10 +116,10 @@ describe('Product integration test ' , () => {
         });
         const res = await request(app).post('/cadastro').send(prod);
         
-        
+
         const r = await request(app).delete(`/excluir/${prod.productCode}`);
         
-        expect(r.statusCode).toBe(201);
+        expect(r.statusCode).toBe(204);
         
     });
     
