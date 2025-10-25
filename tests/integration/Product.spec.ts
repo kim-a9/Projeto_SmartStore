@@ -114,9 +114,11 @@ describe('Product integration test ' , () => {
             price: 5.00
         });
 
-        const r = await request(app).delete(`/excluir/${9876}`);
+        // const r = await request(app).delete(`/excluir/${9876}`);
 
-        expect(r.status).toBe(201);
+        expect(await request(app).delete(`/excluir/${9876}`)).toBe(201);
+
+        // expect(r.statusCode).toBe(201);
     });
 
 
