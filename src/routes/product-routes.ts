@@ -22,7 +22,11 @@ router.get('/consulta', (req, res) =>
 router.get('/consulta/:id', (req, res) => 
     productController.GetProductIdController(req, res));
 
+router.put('/editar/:id', (req, res) => 
+    productController.UpdateProductController(req, res));
 
+router.delete('/excluir/:id', (req, res) => 
+    productController.DeleteProductController(req, res));
 
 
 export default router;
