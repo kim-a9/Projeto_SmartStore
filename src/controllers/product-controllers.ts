@@ -55,10 +55,7 @@ export class ProductController {
 
         const delProd = await this.productServices.deleteProduct(id);
 
-        if(!delProd){
-            throw new Error('Não foi possível localizar o produto.')
-        }
-        res.status(201).json(delProd)
+        res.status(204).json(delProd)
         
     }
     

@@ -30,15 +30,11 @@ export class ProductRepository {
         );
         
         return updateProd;
-
-        // const prodId = await ProductModel.findOne({ productCode: id }).updateOne({ $set: data});
-        // const updateProd = await ProductModel.updateOne({ productCode: id }, { data: IProductInput})
-    
     }
 
-    public async deleteProd(id: string): Promise<IProduct | null> {
-        const delProd = await ProductModel.findByIdAndDelete(id);
-        return delProd;
+    public async deleteProd(id: string): Promise<void> {
+        const delProd = await ProductModel.deleteOne({ productCode: id });
+
     }
     
     

@@ -28,13 +28,11 @@ export class ProductServices{
     }
 
     public async updateProduct(id: string, data: IProduct): Promise<IProduct | null> {
-        // const findProd = await this.productRepository.getById(id);
-
         const updatedProd = await this.productRepository.updateProd(id, data);
         return updatedProd;
     }
     
-    public async deleteProduct(id: string): Promise<IProduct | null> {
+    public async deleteProduct(id: string): Promise<void> {
         const delProd = await this.productRepository.deleteProd(id);
         return delProd;
     }
