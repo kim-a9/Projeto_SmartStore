@@ -17,6 +17,7 @@ describe('Product integration test ' , () => {
             category: "categoria",
             price: 5.0,
         });
+
     });
 
     afterAll(async () => {
