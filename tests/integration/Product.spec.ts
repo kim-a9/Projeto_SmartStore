@@ -10,6 +10,7 @@ describe('Product integration test ' , () => {
 
     beforeEach(async () => {
         await ProductModel.deleteMany({});
+
         await request(app).post('/cadastro').send({
             productCode: "0001",
             name: "Produto 1",
@@ -106,20 +107,29 @@ describe('Product integration test ' , () => {
     });
 
     it('deve deletar um produto com sucesso', async () => {
-        const res = await request(app).post('/cadastro').send({
-            productCode: "9876" ,
-            name: "produto",
+        const prod = await ProductModel.create({
+            productCode: "9876",
+            name: "Produto 1",
             quantity: 50,
             category: "categoria",
-            price: 5.00
+            price: 5.0,
         });
-
-        const r = await request(app).delete(`/excluir/${9876}`);
-
+        const res = await request(app).post('/cadastro').send(prod);
+        
+        
+        const r = await request(app).delete(`/excluir/${prod.productCode}`);
+        
         expect(r.statusCode).toBe(201);
         
     });
-
+    
+    // const prod = await ProductModel.create({
+    //     productCode: "9876",
+    //     name: "Produto 1",
+    //     quantity: 50,
+    //     category: "categoria",
+    //     price: 5.0,
+    // });
 
 
 
