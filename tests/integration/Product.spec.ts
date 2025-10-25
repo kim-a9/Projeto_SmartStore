@@ -105,10 +105,17 @@ describe('Product integration test ' , () => {
     });
 
     it('deve deletar um produto com sucesso', async () => {
+         const res = await request(app).post('/cadastro').send({
+            productCode: "9876" ,
+            name: "produto",
+            quantity: 50,
+            category: "categoria",
+            price: 5.00
+        });
+
         const r = await request(app).delete(`/excluir/${9876}`);
 
         expect(r.statusCode).toBe(201);
-
     });
 
 
