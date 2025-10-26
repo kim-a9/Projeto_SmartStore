@@ -28,6 +28,7 @@ export class ProductController {
 
     public async GetProductIdController(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
+        
         const prodId = await this.productServices.getProdById(id);
 
         if(!prodId){
@@ -35,6 +36,27 @@ export class ProductController {
         }
         res.status(200).json(prodId);
     }
+
+    public async UpdateProductController(req: Request, res: Response): Promise<void> {
+        const { id } = req.params;
+        const { name, quantity, category, price } = req.body;
+
+        const updateProd = await this.productServices.updateProduct(id, req.body);
+
+        if(!updateProd){
+            throw new Error('Não foi possível localizar o produto.')
+        }
+        res.status(201).json(updateProd)
+    }
+
+    public async DeleteProductController(req: Request, res: Response): Promise<void> {
+        const {id} = req.params;
+
+        const delProd = await this.productServices.deleteProduct(id);
+
+        res.status(204).json(delProd)
+    }
+    
     
 
 }

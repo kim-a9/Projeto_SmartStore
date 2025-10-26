@@ -1,11 +1,12 @@
 import { ProductServices } from "../../src/services/product-services";
 import { ProductRepository } from "../../src/repository/product-repository";
 
-
 describe("Product unit test ", () => {
   let createProd: ProductServices;
   let getAllProd: ProductServices;
   let getProdId: ProductServices;
+  let updateProd: ProductServices;
+  let deleteProd: ProductServices;
   let prodRepo: ProductRepository;
 
   beforeEach(() => {
@@ -13,6 +14,8 @@ describe("Product unit test ", () => {
     createProd = new ProductServices(prodRepo);
     getAllProd = new ProductServices(prodRepo);
     getProdId = new ProductServices(prodRepo);
+    updateProd = new ProductServices(prodRepo);
+    deleteProd = new ProductServices(prodRepo);
   });
 
   beforeAll(() => {
@@ -30,6 +33,8 @@ describe("Product unit test ", () => {
       create: jest.fn().mockResolvedValue(newProd),
       getAll: jest.fn(),
       getById: jest.fn(),
+      updateProd: jest.fn(),
+      deleteProd: jest.fn(),
     };
     const prodService = new ProductServices(mockRepository);
 
@@ -53,6 +58,8 @@ describe("Product unit test ", () => {
       create: jest.fn().mockRejectedValue(prodData),
       getAll: jest.fn(),
       getById: jest.fn(),
+      updateProd: jest.fn(),
+      deleteProd: jest.fn(),
     };
     const prodService = new ProductServices(mockRepository);
 
@@ -79,6 +86,8 @@ describe("Product unit test ", () => {
       create: jest.fn().mockResolvedValue(newProd),
       getAll: jest.fn().mockResolvedValue(newProd),
       getById: jest.fn(),
+      updateProd: jest.fn(),
+      deleteProd: jest.fn(),
     };
     const prodService = new ProductServices(mockRepository);
     const product = await prodService.createProduct(newProd as any);
@@ -99,10 +108,12 @@ describe("Product unit test ", () => {
       category: "categoria",
       price: 5.0,
     }
-     const mockRepository = {
+    const mockRepository = {
       create: jest.fn().mockResolvedValue(prod),
       getAll: jest.fn(),
       getById: jest.fn().mockResolvedValue(prod),
+      updateProd: jest.fn(),
+      deleteProd: jest.fn(),
     };
     const prodService = new ProductServices(mockRepository);
     const product = await prodService.createProduct(prod as any);
@@ -114,6 +125,102 @@ describe("Product unit test ", () => {
     expect(mockRepository.getById).toHaveReturnedTimes(1);
 
   });
+
+  it('deve atualizar informações de um produto', async () =>{
+    const product1 = {
+      productCode: '9999',
+      name: "produto a",
+      quantity: 50,
+      category: "categoria",
+      price: 5.0,
+    }
+    const product2 = {
+      ...product1,
+      name: "produto b",
+      quantity: 50,
+      category: "categoria",
+      price: 5.0,
+    }
+     const mockRepository = {
+      create: jest.fn().mockResolvedValue(product1),
+      getAll: jest.fn(),
+      getById: jest.fn().mockResolvedValue(product1),
+      updateProd: jest.fn().mockResolvedValue(product2),
+      deleteProd: jest.fn(),
+    };
+    const prodService = new ProductServices(mockRepository);
+    const createProd = await prodService.createProduct(product1 as any);
+
+
+    const updateProd = await prodService.updateProduct('9999', product2 as any);
+
+    expect(updateProd).toEqual(product2);
+    expect(mockRepository.updateProd).toHaveBeenCalledWith('9999', product2);
+    expect(mockRepository.updateProd).toHaveBeenCalledTimes(1);
+    expect(mockRepository.updateProd).toHaveReturnedTimes(1);
+
+    
+  });
+
+  it('deve lançar erro ao tentar atualizar produto com código inexistente', async () => {
+     const product1 = {
+      productCode: '9999',
+      name: "produto a",
+      quantity: 50,
+      category: "categoria",
+      price: 5.0,
+    }
+    const product2 = {
+      productCode: '9999',
+      name: "produto b",
+      quantity: 50,
+      category: "categoria",
+      price: 5.0,
+    }
+     
+    const mockRepository = {
+      create: jest.fn(),
+      getAll: jest.fn(),
+      getById: jest.fn(),
+      updateProd: jest.fn().mockRejectedValueOnce(new Error('Não foi possível localizar o produto.')),
+      deleteProd: jest.fn(),
+    };
+    const prodService = new ProductServices(mockRepository);
+    const createProd = await prodService.createProduct(product1 as any);
+
+    await expect(prodService.updateProduct('', product2 as any))
+      .rejects.toThrow('Não foi possível localizar o produto.');
+
+  });
+
+  it('deve deletar um produto com sucesso', async () => {
+    const prod = {
+      productCode: "9999",
+      name: "produto",
+      quantity: 50,
+      category: "categoria",
+      price: 5.0,
+    }
+    const mockRepository = {
+      create: jest.fn().mockResolvedValue(prod),
+      getAll: jest.fn(),
+      getById: jest.fn().mockResolvedValueOnce(null),
+      updateProd: jest.fn(),
+      deleteProd: jest.fn().mockResolvedValue(undefined)
+    };
+    const prodService = new ProductServices(mockRepository);
+    const product = await prodService.createProduct(prod as any);
+
+    const delProduct = await prodService.deleteProduct(prod.productCode);
+
+    const dltProd = await prodService.getProdById(prod.productCode);
+
+    expect(dltProd).toBeNull();
+    expect(mockRepository.deleteProd).toHaveBeenCalledTimes(1);
+  });
+
+
+
 
 
 
