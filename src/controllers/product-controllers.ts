@@ -40,7 +40,6 @@ export class ProductController {
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
         const { name, quantity, category, price } = req.body;
-        
 
         const updateProd = await this.productServices.updateProduct(id, req.body);
 
@@ -56,7 +55,6 @@ export class ProductController {
         const delProd = await this.productServices.deleteProduct(id);
 
         res.status(204).json(delProd)
-        
     }
     
     

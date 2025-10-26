@@ -1,12 +1,5 @@
 import { IProduct, ProductModel } from '../database/MongooseProductModel';
 
-// interface IProductInput{
-//     name?: string,
-//     quantity?: number,
-//     category?: string,
-//     price?: number,
-// }
-
 export class ProductRepository {
     public async create(data: IProduct): Promise<IProduct> {
         const newProduct = new ProductModel(data);
@@ -28,7 +21,6 @@ export class ProductRepository {
             { $set: data }, 
             { new: true }
         );
-        
         return updateProd;
     }
 

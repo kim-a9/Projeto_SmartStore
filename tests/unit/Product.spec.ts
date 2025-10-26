@@ -1,7 +1,6 @@
 import { ProductServices } from "../../src/services/product-services";
 import { ProductRepository } from "../../src/repository/product-repository";
 
-
 describe("Product unit test ", () => {
   let createProd: ProductServices;
   let getAllProd: ProductServices;

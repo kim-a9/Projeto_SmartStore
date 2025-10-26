@@ -1,13 +1,6 @@
 import {ProductRepository} from '../repository/product-repository';
 import {IProduct} from '../database/MongooseProductModel';
 
-interface IProductData {
-    name?: string,
-    quantity?: number,
-    category?: string,
-    price?: number
-}
-
 export class ProductServices{
     private productRepository: ProductRepository;
 
