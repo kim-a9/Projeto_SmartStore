@@ -111,9 +111,11 @@ EXEMPLO DO BODY ENVIADO (Thunder Client):
 }
 ```
 EXEMPLO DE RESPOSTA (Thunder Client):
+
 ![ROTA /cadastro](docs/testes/2-cadastro-produto.png)
 
 3. Pesquisar por todos os produtos ( GET http://localhost:3000/consulta )
+
 ![ROTA /consulta](docs/testes/3-consulta-produtos.png)
 
 4. Pesquisar por UM produto pelo código ( GET http://localhost:3000/consulta/:id )
@@ -122,6 +124,7 @@ EXEMPLO DE USO (Thunder Client):
 GET http://localhost:3000/consulta/5678
 ```
 EXEMPLO DE RESPOSTA (Thunder Client):
+
 ![ROTA /consulta/:id](docs/testes/3-consulta-produtos-id.png)
 
 5. Editar informações de um produto ( PUT http://localhost:3000/editar/:id )
@@ -136,6 +139,7 @@ EXEMPLO DO BODY ENVIADO (Thunder Client):
 }
 ```
 EXEMPLO DE RESPOSTA (Thunder Client):
+
 ![ROTA /editar/:id](docs/testes/4-editar-produtos.png)
 
 6. Excluir um produto dos registros ( DELETE http://localhost:3000/excluir/:id)
@@ -145,7 +149,8 @@ GET http://localhost:3000/deletar/9999
 ```
 
 EXEMPLO DE RESPOSTA (Thunder Client):
-![ROTA /deletar/:id](docs/testes/5-excluir-produto.png)
+
+![ROTA /excluir/:id](docs/testes/5-excluir-produto.png)
 
 
 
