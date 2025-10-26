@@ -10,7 +10,7 @@ Permitir operações CRUD (Create, Read, Update, Delete) em registros de produto
 - Express.js
 - MongoDB – Banco de dados utilizado na aplicação
 - Mongoose – Biblioteca para integração com o banco de dados
-- Postman – Testes rápidos das rotas da api
+- Postman/Thunder Client – Testes rápidos das rotas da api
 - Jest – Testes unitários
 - SuperTest - Simula requisições HTTP para os testes
 - GitHub Actions – Integração e entrega contínua (CI/CD)
@@ -33,7 +33,9 @@ Antes de iniciar o projeto, garanta que você tenha:
     | POST | /cadastro | Registra um novo produto
     | GET | /consulta | Consulta todos os produtos registrados
     | GET | /consulta/:id | Consulta um único produto registrado
-    | Outros métodos a serem desenvolvidos |
+    | PUT | /editar/:id | Edita informações de um produto registrado
+    | DELETE | /excluir/:id | Exclui um produto dos registros
+  
 ```
 
 ## 📁 Estrutura de Pastas (Clean Architecture)
@@ -94,11 +96,11 @@ npm start
 
 # 🧪 Testando a API
 1. Mensagem inicial (GET http://localhost:3000/ )
-EXEMPLO DE RESPOSTA (ThunderClient):
+EXEMPLO DE RESPOSTA (Thunder Client):
 ![Mensagem Tela Inicial](docs/testes/1-tela-inicial.png)
 
 2. Adicionar um novo produto (POST http://localhost:3000/cadastro )
-EXEMPLO DO BODY ENVIADO (ThunderClient):
+EXEMPLO DO BODY ENVIADO (Thunder Client):
 ```console
 {
   "productCode": "1234" ,
@@ -108,21 +110,43 @@ EXEMPLO DO BODY ENVIADO (ThunderClient):
   "price": 5.00
 }
 ```
-EXEMPLO DE RESPOSTA (ThunderClient):
+EXEMPLO DE RESPOSTA (Thunder Client):
 ![ROTA /cadastro](docs/testes/2-cadastro-produto.png)
 
-3. Pesquisar por todos os produtos (GET http://localhost:3000/consulta )
+3. Pesquisar por todos os produtos ( GET http://localhost:3000/consulta )
 ![ROTA /consulta](docs/testes/3-consulta-produtos.png)
 
-4. Pesquisar por UM produto pelo código (GET http://localhost:3000/consulta/:id )
-EXEMPLO DE USO (ThunderClient): 
+4. Pesquisar por UM produto pelo código ( GET http://localhost:3000/consulta/:id )
+EXEMPLO DE USO (Thunder Client): 
 ```console
 GET http://localhost:3000/consulta/5678
 ```
-EXEMPLO DE RESPOSTA (ThunderClient):
+EXEMPLO DE RESPOSTA (Thunder Client):
 ![ROTA /consulta/:id](docs/testes/3-consulta-produtos-id.png)
 
+5. Editar informações de um produto ( PUT http://localhost:3000/editar/:id )
+EXEMPLO DO BODY ENVIADO (Thunder Client):
+```console
+{
+  "productCode": "9998" ,
+  "name": "PRODUTO A",
+  "quantity": 50,
+  "category": "categoria",
+  "price": 5.00
+}
+```
+EXEMPLO DE RESPOSTA (Thunder Client):
+![ROTA /editar/:id](docs/testes/4-editar-produtos.png)
+
+6. Excluir um produto dos registros ( DELETE http://localhost:3000/excluir/:id)
+EXEMPLO DE USO (Thunder Client): 
+```console
+GET http://localhost:3000/deletar/9999
+```
+
+EXEMPLO DE RESPOSTA (Thunder Client):
+![ROTA /deletar/:id](docs/testes/5-excluir-produto.png)
 
 
-# 🆕 Futuras Atualizações:
-O projeto ainda contará com rotas para editar informações e deletar. Uma opção para buscar um produto pelo nome poderá ser incluída.
+
+ 
