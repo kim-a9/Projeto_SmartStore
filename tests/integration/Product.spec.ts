@@ -30,7 +30,7 @@ describe('Product integration test ' , () => {
         const res = await request(app).get('/');
 
         expect(res.statusCode).toBe(200);
-        expect(res.body.message).toEqual('Olá, Mundo');
+        expect(res.body.message).toEqual('SmartStore: Plataforma de gerenciamento de estoque.');
 
     });
 

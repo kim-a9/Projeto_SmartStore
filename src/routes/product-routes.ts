@@ -10,7 +10,7 @@ const productController = new ProductController(productServices);
 const router = express.Router();
 
 router.get('/', (req, res) => 
-    res.json({ message: "Olá, Mundo" })
+    res.json({ message: "SmartStore: Plataforma de gerenciamento de estoque." })
 );
 
 router.post('/cadastro', (req, res) => 
