@@ -98,6 +98,7 @@ describe('Product integration test ' , () => {
             price: 5.0,
         });
         const res = await request(app).post('/cadastro').send(prod);
+        console.log("primeira: ", res.body);
 
         const r = await request(app).put(`/editar/${prod.productCode}`).send({
             name: "Produto Editado",
@@ -105,6 +106,8 @@ describe('Product integration test ' , () => {
             category: "categoria",
             price: 5.0
         });
+        console.log("segunda: ", r.body);
+
         
         expect(r.statusCode).toBe(201);
     });
