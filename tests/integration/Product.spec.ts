@@ -100,7 +100,10 @@ describe('Product integration test ' , () => {
         const res = await request(app).post('/cadastro').send(prod);
 
         const r = await request(app).put(`/editar/${prod.productCode}`).send({
-            name: "Produto Editado"
+            name: "Produto Editado",
+            quantity: 50,
+            category: "categoria",
+            price: 5.0
         });
         
         expect(r.statusCode).toBe(201);
