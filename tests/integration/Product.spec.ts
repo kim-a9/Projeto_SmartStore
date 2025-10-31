@@ -91,7 +91,7 @@ describe('Product integration test ' , () => {
 
     it('deve atualizar informações de um produto', async () =>{
         const prod = await ProductModel.create({
-            productCode: "9876",
+            productCode: 9876,
             name: "Produto 1",
             quantity: 50,
             category: "categoria",
