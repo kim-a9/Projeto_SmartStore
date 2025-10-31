@@ -24,7 +24,7 @@ router.get('/consulta', (req, res) =>
 router.get('/consulta/:id', (req, res) => 
     productController.GetProductIdController(req, res));
 
-router.put('/editar/:pID', (req, res) => 
+router.put('/editar/:productCode', (req, res) => 
     productController.UpdateProductController(req, res));
 
 router.delete('/excluir/:id', (req, res) => 
