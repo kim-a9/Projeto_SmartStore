@@ -104,7 +104,7 @@ describe('Product integration test ' , () => {
             name: "Produto Editado",
         });
         console.log("segunda: ", r.body);
-
+        ///alterei route para /:pID
         
         expect(r.statusCode).toBe(201);
     });
