@@ -27,9 +27,9 @@ export class ProductController {
     }
 
     public async GetProductIdController(req: Request, res: Response): Promise<void> {
-        const { id } = req.params;
+        const productCode = req.body;
         
-        const prodId = await this.productServices.getProdById(id);
+        const prodId = await this.productServices.getProdById(productCode);
 
         if(!prodId){
             throw new Error('Id inválido. Verifique as informações inseridas e tente novamente.');
@@ -38,10 +38,10 @@ export class ProductController {
     }
 
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
-        const { id } = req.params;
+        const productCode = req.body;
         const { name, quantity, category, price } = req.body;
 
-        const updateProd = await this.productServices.updateProduct(id, req.body);
+        const updateProd = await this.productServices.updateProduct(productCode, req.body);
 
         if(!updateProd){
             throw new Error('Não foi possível localizar o produto.')
@@ -50,9 +50,9 @@ export class ProductController {
     }
 
     public async DeleteProductController(req: Request, res: Response): Promise<void> {
-        const {id} = req.params;
+        const productCode = req.body;
 
-        const delProd = await this.productServices.deleteProduct(id);
+        const delProd = await this.productServices.deleteProduct(productCode);
 
         res.status(204).json(delProd)
     }

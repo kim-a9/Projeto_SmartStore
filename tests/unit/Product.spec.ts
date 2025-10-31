@@ -102,7 +102,7 @@ describe("Product unit test ", () => {
 
   it("deve buscar um produto por id e retornar com sucesso", async () => {
     const prod = {
-      productCode: "9999",
+      productCode: 9999,
       name: "produto",
       quantity: 50,
       category: "categoria",
@@ -128,7 +128,7 @@ describe("Product unit test ", () => {
 
   it('deve atualizar informações de um produto', async () =>{
     const product1 = {
-      productCode: '9999',
+      productCode: 9999,
       name: "produto a",
       quantity: 50,
       category: "categoria",
@@ -152,10 +152,10 @@ describe("Product unit test ", () => {
     const createProd = await prodService.createProduct(product1 as any);
 
 
-    const updateProd = await prodService.updateProduct('9999', product2 as any);
+    const updateProd = await prodService.updateProduct(9999, product2 as any);
 
     expect(updateProd).toEqual(product2);
-    expect(mockRepository.updateProd).toHaveBeenCalledWith('9999', product2);
+    expect(mockRepository.updateProd).toHaveBeenCalledWith(9999, product2);
     expect(mockRepository.updateProd).toHaveBeenCalledTimes(1);
     expect(mockRepository.updateProd).toHaveReturnedTimes(1);
 
@@ -164,14 +164,14 @@ describe("Product unit test ", () => {
 
   it('deve lançar erro ao tentar atualizar produto com código inexistente', async () => {
      const product1 = {
-      productCode: '9999',
+      productCode: 9999,
       name: "produto a",
       quantity: 50,
       category: "categoria",
       price: 5.0,
     }
     const product2 = {
-      productCode: '9999',
+      productCode: 9999,
       name: "produto b",
       quantity: 50,
       category: "categoria",
@@ -188,14 +188,14 @@ describe("Product unit test ", () => {
     const prodService = new ProductServices(mockRepository);
     const createProd = await prodService.createProduct(product1 as any);
 
-    await expect(prodService.updateProduct('', product2 as any))
+    await expect(prodService.updateProduct(0, product2 as any))
       .rejects.toThrow('Não foi possível localizar o produto.');
 
   });
 
   it('deve deletar um produto com sucesso', async () => {
     const prod = {
-      productCode: "9999",
+      productCode: 9999,
       name: "produto",
       quantity: 50,
       category: "categoria",
@@ -214,7 +214,7 @@ describe("Product unit test ", () => {
     const delProduct = await prodService.deleteProduct(prod.productCode);
 
     const dltProd = await prodService.getProdById(prod.productCode);
-
+1
     expect(dltProd).toBeNull();
     expect(mockRepository.deleteProd).toHaveBeenCalledTimes(1);
   });
