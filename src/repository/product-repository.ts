@@ -10,22 +10,22 @@ export class ProductRepository {
         const allProducts = await ProductModel.find();
         return allProducts;
     }
-    public async getById(id: string): Promise<IProduct | null> {
-        const prodId = await ProductModel.findOne({ productCode: id });
+    public async getById(pID: number): Promise<IProduct | null> {
+        const prodId = await ProductModel.findOne({ productCode: pID });
         return prodId;
     }
 
-    public async updateProd(id: string, data: IProduct): Promise<IProduct | null> {
+    public async updateProd(pID: number, data: IProduct): Promise<IProduct | null> {
         const updateProd = await ProductModel.findOneAndUpdate(
-            { productCode: id }, 
+            { productCode: pID }, 
             { $set: data }, 
             { new: true }
         );
         return updateProd;
     }
 
-    public async deleteProd(id: string): Promise<void> {
-        const delProd = await ProductModel.deleteOne({ productCode: id });
+    public async deleteProd(pID: number): Promise<void> {
+        const delProd = await ProductModel.deleteOne({ productCode: pID });
 
     }
     
