@@ -1,4 +1,5 @@
 import express from 'express';
+
 import { ProductController } from '../controllers/product-controllers';
 import { ProductServices } from '../services/product-services';
 import { ProductRepository } from '../repository/product-repository';
@@ -6,6 +7,7 @@ import { ProductRepository } from '../repository/product-repository';
 const productRepository = new ProductRepository();
 const productServices = new ProductServices(productRepository);
 const productController = new ProductController(productServices);
+
 
 const router = express.Router();
 
