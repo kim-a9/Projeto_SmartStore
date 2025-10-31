@@ -102,9 +102,6 @@ describe('Product integration test ' , () => {
 
         const r = await request(app).put(`/editar/${prod.productCode}`).send({
             name: "Produto Editado",
-            quantity: 50,
-            category: "categoria",
-            price: 5.0
         });
         console.log("segunda: ", r.body);
 
