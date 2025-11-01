@@ -38,15 +38,21 @@ export class ProductController {
     }
 
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
-        const {productCode} = req.body;
-        const { name, quantity, category, price } = req.body;
-        
-        const updateProd = await this.productServices.updateProduct(productCode, req.body);
+        console.log("PUT /editar/:productCode - productCodeParam:", req.params.productCode);
+        try{
+            const {productCode} = req.body;
+            const { name, quantity, category, price } = req.body;
 
-        if(!updateProd){
-            throw new Error('Não foi possível localizar o produto.')
+            const updateProd = await this.productServices.updateProduct(productCode, { name, quantity, category, price });
+
+            if(!updateProd){
+                throw new Error('Não foi possível localizar o produto.')
+            }
+            res.status(201).json(updateProd)
+
+        } catch (error: any){
+            console.error("ERRO na rota PUT /editar/:productCode:", error.message, error.stack);
         }
-        res.status(201).json(updateProd)
     }
 
     public async DeleteProductController(req: Request, res: Response): Promise<void> {
