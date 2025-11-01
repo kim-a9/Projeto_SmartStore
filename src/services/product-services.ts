@@ -16,8 +16,8 @@ export class ProductServices{
         return await this.productRepository.getAll();
     }
 
-    public async getProdById(pID: number): Promise<IProduct | null> {
-        return await this.productRepository.getById(pID);
+    public async getProdById(productCode: number): Promise<IProduct | null> {
+        return await this.productRepository.getById(productCode);
     }
 
     public async updateProduct(productCode: number | string, data: Partial<IProduct>): Promise<IProduct | null> {
@@ -25,8 +25,8 @@ export class ProductServices{
         return updatedProd;
     }
     
-    public async deleteProduct(pID: number): Promise<void> {
-        const delProd = await this.productRepository.deleteProd(pID);
+    public async deleteProduct(productCode: number): Promise<void> {
+        const delProd = await this.productRepository.deleteProd(productCode);
         return delProd;
     }
 

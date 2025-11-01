@@ -10,8 +10,8 @@ export class ProductRepository {
         const allProducts = await ProductModel.find();
         return allProducts;
     }
-    public async getById(pID: number): Promise<IProduct | null> {
-        const prodId = await ProductModel.findOne({ productCode: pID });
+    public async getById(productCode: number): Promise<IProduct | null> {
+        const prodId = await ProductModel.findOne({ productCode: productCode });
         return prodId;
     }
 
@@ -24,8 +24,8 @@ export class ProductRepository {
         return updateProd;
     }
 
-    public async deleteProd(pID: number): Promise<void> {
-        const delProd = await ProductModel.deleteOne({ productCode: pID });
+    public async deleteProd(productCode: number): Promise<void> {
+        const delProd = await ProductModel.deleteOne({ productCode: productCode });
 
     }
     
