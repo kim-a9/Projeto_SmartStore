@@ -45,9 +45,9 @@ export class ProductController {
 
             const updateProd = await this.productServices.updateProduct(productCode, { name, quantity, category, price });
 
-            if(!updateProd){
-                throw new Error('Não foi possível localizar o produto.')
-            }
+            // if(!updateProd){
+            //     throw new Error('Não foi possível localizar o produto.')
+            // }
             res.status(201).json(updateProd)
 
         } catch (error: any){
