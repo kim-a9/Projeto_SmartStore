@@ -75,15 +75,16 @@ describe('Product integration test ' , () => {
     });
 
     it('deve buscar pelo produto por id e retornar 200', async () => {
-        const res = await request(app).post('/cadastro').send({
-            productCode: "9999",
-            name: "produto",
+        const prod = await ProductModel.create({
+            productCode: 9876,
+            name: "Produto 1",
             quantity: 50,
             category: "categoria",
             price: 5.0,
         });
+        const res = await request(app).post('/cadastro').send(prod);
 
-        const r = await request(app).get('/consulta/');
+        const r = await request(app).get(`/consulta/${prod.productCode}`);
 
         expect(r.statusCode).toBe(200);
 
@@ -91,7 +92,7 @@ describe('Product integration test ' , () => {
 
     it('deve atualizar informações de um produto', async () =>{
         const prod = await ProductModel.create({
-            productCode: "9876",
+            productCode: 9876,
             name: "Produto 1",
             quantity: 50,
             category: "categoria",
@@ -100,7 +101,7 @@ describe('Product integration test ' , () => {
         const res = await request(app).post('/cadastro').send(prod);
 
         const r = await request(app).put(`/editar/${prod.productCode}`).send({
-            name: "Produto Editado"
+            name: "Produto Editado",
         });
         
         expect(r.statusCode).toBe(201);

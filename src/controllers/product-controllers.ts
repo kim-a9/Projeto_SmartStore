@@ -27,34 +27,48 @@ export class ProductController {
     }
 
     public async GetProductIdController(req: Request, res: Response): Promise<void> {
-        const { id } = req.params;
-        
-        const prodId = await this.productServices.getProdById(id);
+        try {
+            const productCode = req.body;
+            
+            const prodId = await this.productServices.getProdById(productCode);
 
-        if(!prodId){
-            throw new Error('Id inválido. Verifique as informações inseridas e tente novamente.');
+            // if(!prodId){
+            //     throw new Error('Id inválido. Verifique as informações inseridas e tente novamente.');
+            // }
+            res.status(200).json(prodId);
+        } catch (e: any) {
+            res.status(400).json({ error: e });
         }
-        res.status(200).json(prodId);
     }
 
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
-        const { id } = req.params;
-        const { name, quantity, category, price } = req.body;
+        console.log("PUT /editar/:productCode - productCodeParam:", req.params.productCode);
+        try{
+            const {productCode} = req.body;
+            const { name, quantity, category, price } = req.body;
 
-        const updateProd = await this.productServices.updateProduct(id, req.body);
+            const updateProd = await this.productServices.updateProduct(productCode, { name, quantity, category, price });
 
-        if(!updateProd){
-            throw new Error('Não foi possível localizar o produto.')
+            // if(!updateProd){
+            //     throw new Error('Não foi possível localizar o produto.')
+            // }
+            res.status(201).json(updateProd)
+
+        } catch (e: any){
+            console.error(e.message, e.stack);
         }
-        res.status(201).json(updateProd)
     }
 
     public async DeleteProductController(req: Request, res: Response): Promise<void> {
-        const {id} = req.params;
+        try {
+            const productCode = req.body;
 
-        const delProd = await this.productServices.deleteProduct(id);
+            const delProd = await this.productServices.deleteProduct(productCode);
 
-        res.status(204).json(delProd)
+            res.status(204).json(delProd)
+        } catch (e: any) {
+            res.status(400).json({ error: e });
+        }
     }
     
     

@@ -16,17 +16,17 @@ export class ProductServices{
         return await this.productRepository.getAll();
     }
 
-    public async getProdById(id: string): Promise<IProduct | null> {
-        return await this.productRepository.getById(id);
+    public async getProdById(productCode: number): Promise<IProduct | null> {
+        return await this.productRepository.getById(productCode);
     }
 
-    public async updateProduct(id: string, data: IProduct): Promise<IProduct | null> {
-        const updatedProd = await this.productRepository.updateProd(id, data);
+    public async updateProduct(productCode: number | string, data: Partial<IProduct>): Promise<IProduct | null> {
+        const updatedProd = await this.productRepository.updateProd(productCode, data);
         return updatedProd;
     }
     
-    public async deleteProduct(id: string): Promise<void> {
-        const delProd = await this.productRepository.deleteProd(id);
+    public async deleteProduct(productCode: number): Promise<void> {
+        const delProd = await this.productRepository.deleteProd(productCode);
         return delProd;
     }
 
