@@ -38,7 +38,7 @@ export class ProductController {
     }
 
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
-        const productCode = req.body;
+        const {productCode} = req.body;
         const { name, quantity, category, price } = req.body;
         
         const updateProd = await this.productServices.updateProduct(productCode, req.body);

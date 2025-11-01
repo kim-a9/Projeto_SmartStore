@@ -15,9 +15,9 @@ export class ProductRepository {
         return prodId;
     }
 
-    public async updateProd(pID: number, data: IProduct): Promise<IProduct | null> {
+    public async updateProd(productCode: number, data: IProduct): Promise<IProduct | null> {
         const updateProd = await ProductModel.findOneAndUpdate(
-            { productCode: pID }, 
+            { productCode: productCode }, 
             { $set: data }, 
             { new: true }
         );

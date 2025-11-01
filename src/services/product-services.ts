@@ -20,8 +20,8 @@ export class ProductServices{
         return await this.productRepository.getById(pID);
     }
 
-    public async updateProduct(pID: number, data: IProduct): Promise<IProduct | null> {
-        const updatedProd = await this.productRepository.updateProd(pID, data);
+    public async updateProduct(productCode: number, data: IProduct): Promise<IProduct | null> {
+        const updatedProd = await this.productRepository.updateProd(productCode, data);
         return updatedProd;
     }
     
