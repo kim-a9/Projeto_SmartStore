@@ -54,17 +54,21 @@ export class ProductController {
             // }
             res.status(201).json(updateProd)
 
-        } catch (error: any){
-            console.error("ERRO na rota PUT /editar/:productCode:", error.message, error.stack);
+        } catch (e: any){
+            console.error(e.message, e.stack);
         }
     }
 
     public async DeleteProductController(req: Request, res: Response): Promise<void> {
-        const productCode = req.body;
+        try {
+            const productCode = req.body;
 
-        const delProd = await this.productServices.deleteProduct(productCode);
+            const delProd = await this.productServices.deleteProduct(productCode);
 
-        res.status(204).json(delProd)
+            res.status(204).json(delProd)
+        } catch (e: any) {
+            res.status(400).json({ error: e });
+        }
     }
     
     
