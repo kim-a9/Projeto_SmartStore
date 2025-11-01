@@ -20,7 +20,7 @@ export class ProductServices{
         return await this.productRepository.getById(pID);
     }
 
-    public async updateProduct(productCode: number, data: IProduct): Promise<IProduct | null> {
+    public async updateProduct(productCode: number | string, data: Partial<IProduct>): Promise<IProduct | null> {
         const updatedProd = await this.productRepository.updateProd(productCode, data);
         return updatedProd;
     }

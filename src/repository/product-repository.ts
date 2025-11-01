@@ -15,7 +15,7 @@ export class ProductRepository {
         return prodId;
     }
 
-    public async updateProd(productCode: number, data: IProduct): Promise<IProduct | null> {
+    public async updateProd(productCode: number | string, data: Partial<IProduct>): Promise<IProduct | null> {
         const updateProd = await ProductModel.findOneAndUpdate(
             { productCode: productCode }, 
             { $set: data }, 
