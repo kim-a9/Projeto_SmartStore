@@ -27,14 +27,18 @@ export class ProductController {
     }
 
     public async GetProductIdController(req: Request, res: Response): Promise<void> {
-        const productCode = req.body;
-        
-        const prodId = await this.productServices.getProdById(productCode);
+        try {
+            const productCode = req.body;
+            
+            const prodId = await this.productServices.getProdById(productCode);
 
-        if(!prodId){
-            throw new Error('Id inválido. Verifique as informações inseridas e tente novamente.');
+            // if(!prodId){
+            //     throw new Error('Id inválido. Verifique as informações inseridas e tente novamente.');
+            // }
+            res.status(200).json(prodId);
+        } catch (e: any) {
+            res.status(400).json({ error: e });
         }
-        res.status(200).json(prodId);
     }
 
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
