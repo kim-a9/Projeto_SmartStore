@@ -84,7 +84,7 @@ describe('Product integration test ' , () => {
         });
         const res = await request(app).post('/cadastro').send(prod);
 
-        const r = await request(app).get(`/consulta/${prod.productCode}`).send();
+        const r = await request(app).get(`/consulta/${prod.productCode}`);
 
         expect(r.statusCode).toBe(200);
 
@@ -109,7 +109,7 @@ describe('Product integration test ' , () => {
 
     it('deve deletar um produto com sucesso', async () => {
         const prod = await ProductModel.create({
-            productCode: "9876",
+            productCode: 9876,
             name: "Produto 1",
             quantity: 50,
             category: "categoria",
