@@ -32,7 +32,7 @@ export class ProductController {
 
         try {
             const prodId = await this.productServices.getProdById(productCode);
-            res.status(200).json(prodId);
+            res.status(200).json({prodId});
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
@@ -55,7 +55,7 @@ export class ProductController {
 
         try {
             const delProd = await this.productServices.deleteProduct(productCode);
-            res.status(204).send();
+            res.status(204).send(delProd);
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
