@@ -44,7 +44,7 @@ export class ProductController {
 
         try {
             const updateProd = await this.productServices.updateProduct(productCode, { name, quantity, category, price });
-            res.status(201).json(updateProd);
+            res.status(201).send();
         } catch (e: any) {
             res.status(400).json({ error: e });        
         }
@@ -55,7 +55,7 @@ export class ProductController {
 
         try {
             const delProd = await this.productServices.deleteProduct(productCode);
-            res.status(204).json(delProd)
+            res.status(204).send();
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
