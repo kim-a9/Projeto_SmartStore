@@ -51,7 +51,7 @@ export class ProductController {
     };
 
     public async DeleteProductController(req: Request, res: Response): Promise<void> {
-        const productCode = req.body;
+        const {productCode} = req.body;
 
         try {
             const delProd = await this.productServices.deleteProduct(productCode);
