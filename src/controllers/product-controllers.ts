@@ -28,7 +28,7 @@ export class ProductController {
     };
 
     public async GetProductIdController(req: Request, res: Response): Promise<void> {
-        const productCode = req.body;
+        const {productCode} = req.body;
 
         try {
             const prodId = await this.productServices.getProdById(productCode);
