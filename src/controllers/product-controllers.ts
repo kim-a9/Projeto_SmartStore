@@ -28,15 +28,15 @@ export class ProductController {
     };
 
     public async GetProductIdController(req: Request, res: Response): Promise<void> {
-        const {productCode} = req.body;
+        const { productCode } = req.body;
 
         try {
             const prodId = await this.productServices.getProdById(productCode);
-            res.status(200).json({prodId});
+            res.status(200).send(prodId);
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
-        
+
     };
 
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
@@ -52,7 +52,7 @@ export class ProductController {
     };
 
     public async DeleteProductController(req: Request, res: Response): Promise<void> {
-        const {productCode} = req.body;
+        const { productCode} = req.body;
 
         try {
             const delProd = await this.productServices.deleteProduct(productCode);
