@@ -84,7 +84,7 @@ describe('Product integration test ' , () => {
         });
         const res = await request(app).post('/cadastro').send(prod);
 
-        const r = await request(app).get(`/consulta/${prod.productCode}`);
+        const r = await request(app).get(`/consulta/${prod.productCode}`).send();
 
         expect(r.statusCode).toBe(200);
 
