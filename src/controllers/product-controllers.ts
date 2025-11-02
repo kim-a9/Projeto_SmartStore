@@ -9,67 +9,57 @@ export class ProductController {
     }
 
     public async CreateProductController(req: Request, res: Response): Promise<void> {
-        const product = await this.productServices.createProduct(req.body);
+        try {
+            const product = await this.productServices.createProduct(req.body);
+            res.status(200).json({ message: 'Produto criado com sucesso!'});
 
-        if(!product) {
-            throw new Error('Verifique os dados inseridos e tente novamente');
+        } catch (e: any) {
+            res.status(500).json({ error: e });
         }
-        res.status(200).json({ message: 'Produto criado com sucesso!'});
-    }
+    };
 
     public async GetProductController(req: Request, res: Response): Promise<void> {
-        const allProducts = await this.productServices.getProducts();
-
-        if(!allProducts) {
-            throw new Error('Não foi possível localizar os produtos.');
+        try {
+            const allProducts = await this.productServices.getProducts();
+            res.status(200).json(allProducts);
+        } catch (e: any) {
+            res.status(400).json({ error: e });
         }
-        res.status(200).json(allProducts);
-    }
+    };
 
     public async GetProductIdController(req: Request, res: Response): Promise<void> {
-        try {
-            const productCode = req.body;
-            
-            const prodId = await this.productServices.getProdById(productCode);
+        const productCode = req.body;
 
-            // if(!prodId){
-            //     throw new Error('Id inválido. Verifique as informações inseridas e tente novamente.');
-            // }
+        try {
+            const prodId = await this.productServices.getProdById(productCode);
             res.status(200).json(prodId);
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
-    }
+    };
 
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
-        console.log("PUT /editar/:productCode - productCodeParam:", req.params.productCode);
-        try{
-            const {productCode} = req.body;
-            const { name, quantity, category, price } = req.body;
+        const {productCode} = req.body;
+        const { name, quantity, category, price } = req.body;
 
+        try {
             const updateProd = await this.productServices.updateProduct(productCode, { name, quantity, category, price });
-
-            // if(!updateProd){
-            //     throw new Error('Não foi possível localizar o produto.')
-            // }
-            res.status(201).json(updateProd)
-
-        } catch (e: any){
-            console.error(e.message, e.stack);
+            res.status(201).json(updateProd);
+        } catch (e: any) {
+            res.status(400).json({ error: e });        
         }
-    }
+    };
 
     public async DeleteProductController(req: Request, res: Response): Promise<void> {
+        const productCode = req.body;
+
         try {
-            const productCode = req.body;
-
             const delProd = await this.productServices.deleteProduct(productCode);
-
             res.status(204).json(delProd)
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
-    }
+    };
     
     
 
