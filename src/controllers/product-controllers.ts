@@ -36,6 +36,7 @@ export class ProductController {
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
+        
     };
 
     public async UpdateProductController(req: Request, res: Response): Promise<void> {
@@ -59,6 +60,7 @@ export class ProductController {
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
+
     };
     
     
