@@ -28,10 +28,10 @@ export class ProductController {
     };
 
     public async GetProductIdController(req: Request, res: Response): Promise<void> {
-        const { productCode } = req.body;
+        const { productCode } = req.params;
 
         try {
-            const prodId = await this.productServices.getProdById(productCode);
+            const prodId = await this.productServices.getProdById(Number(productCode));
             res.status(200).send({prodId});
         } catch (e: any) {
             res.status(400).json({ error: e });
