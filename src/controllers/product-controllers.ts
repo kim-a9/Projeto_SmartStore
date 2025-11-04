@@ -52,11 +52,11 @@ export class ProductController {
     };
 
     public async DeleteProductController(req: Request, res: Response): Promise<void> {
-        const { productCode} = req.body;
+        const { productCode } = req.params;
 
         try {
-            const delProd = await this.productServices.deleteProduct(productCode);
-            res.status(204).send(delProd);
+            const delProd = await this.productServices.deleteProduct(Number(productCode));
+            res.status(204).send({delProd});
         } catch (e: any) {
             res.status(400).json({ error: e });
         }
