@@ -32,9 +32,9 @@ Antes de iniciar o projeto, garanta que você tenha:
     | GET | / | Tela inicial
     | POST | /cadastro | Registra um novo produto
     | GET | /consulta | Consulta todos os produtos registrados
-    | GET | /consulta/:id | Consulta um único produto registrado
-    | PUT | /editar/:id | Edita informações de um produto registrado
-    | DELETE | /excluir/:id | Exclui um produto dos registros
+    | GET | /consulta/:productCode | Consulta um único produto registrado
+    | PUT | /editar/:productCode | Edita informações de um produto registrado
+    | DELETE | /excluir/:productCode | Exclui um produto dos registros
   
 ```
 
@@ -118,7 +118,7 @@ EXEMPLO DE RESPOSTA (Thunder Client):
 
 ![ROTA /consulta](docs/testes/3-consulta-produtos.png)
 
-4. Pesquisar por UM produto pelo código ( GET http://localhost:3000/consulta/:id )
+4. Pesquisar por UM produto pelo código ( GET http://localhost:3000/consulta/:productCode )
 EXEMPLO DE USO (Thunder Client): 
 ```console
 GET http://localhost:3000/consulta/5678
@@ -127,7 +127,7 @@ EXEMPLO DE RESPOSTA (Thunder Client):
 
 ![ROTA /consulta/id](docs/testes/3-consulta-produtos-id.png)
 
-5. Editar informações de um produto ( PUT http://localhost:3000/editar/:id )
+5. Editar informações de um produto ( PUT http://localhost:3000/editar/:productCode)
 EXEMPLO DO BODY ENVIADO (Thunder Client):
 ```console
 {
@@ -142,7 +142,7 @@ EXEMPLO DE RESPOSTA (Thunder Client):
 
 ![ROTA /editar/id](docs/testes/4-editar-produtos.png)
 
-6. Excluir um produto dos registros ( DELETE http://localhost:3000/excluir/:id)
+6. Excluir um produto dos registros ( DELETE http://localhost:3000/excluir/:productCode)
 EXEMPLO DE USO (Thunder Client): 
 ```console
 GET http://localhost:3000/deletar/9999
@@ -151,6 +151,7 @@ GET http://localhost:3000/deletar/9999
 EXEMPLO DE RESPOSTA (Thunder Client):
 
 ![ROTA /excluir/id](docs/testes/5-excluir-produto.png)
+
 
 
 
